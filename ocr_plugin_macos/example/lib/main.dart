@@ -6,7 +6,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:ocr_plugin_macos/ocr_plugin_macos.dart';
 import 'package:ocr_plugin_macos/ocr_result.dart';
 
@@ -52,6 +51,14 @@ class _MyAppState extends State<MyApp> {
       results = await _ocrPluginMacosPlugin.recognizeText(file.path);
       print("results: $results");
       for (var result in results) {
+        print(result);
+      }
+
+      print("sorting ..........");
+
+      final sorted = results.clusterOcrResults();
+
+      for (var result in sorted) {
         print(result);
       }
     } on Exception catch (e) {

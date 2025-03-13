@@ -14,7 +14,7 @@ class MethodChannelOcrPluginMacos extends OcrPluginMacosPlatform {
   Future<List<OcrResult>> recognizeText(String imagePath) async {
     try {
       final List<dynamic> result = await methodChannel.invokeMethod(
-        'recognizeText',
+        'recognizeTextWithPosition',
         {'imagePath': imagePath},
       );
       return result
